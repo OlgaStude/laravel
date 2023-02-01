@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\deskResource;
 use App\Models\Desks;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class deskController extends Controller
      */
     public function index()
     {
-        return Desks::all();
+        return deskResource::collection(Desks::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class deskController extends Controller
      */
     public function show($id)
     {
-        return Desks::find($id);
+        return new deskResource(Desks::findOrFail($id));
     }
 
     /**
