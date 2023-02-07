@@ -16,7 +16,7 @@ class deskController extends Controller
      */
     public function index()
     {
-        return deskResource::collection(Desks::all());
+        return deskResource::collection(Desks::with('lists')->get());
     }
 
     /**

@@ -16,7 +16,7 @@ class ListsFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'desk_id' => Desks::inRandomOrder()->first()->id
+            'desks_id' => Desks::inRandomOrder()->first()->id
         ];
     }
 }
