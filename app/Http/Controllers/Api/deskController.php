@@ -38,7 +38,7 @@ class deskController extends Controller
      */
     public function show($id)
     {
-        return new deskResource(Desks::findOrFail($id));
+        return new deskResource(Desks::with('lists')->findOrFail($id));
     }
 
     /**
