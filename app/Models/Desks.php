@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Desks extends Model
 {
     use HasFactory;
+    protected $fillable = ['name'];
     public function lists(){
         return $this->hasMany(Lists::class);
     }
