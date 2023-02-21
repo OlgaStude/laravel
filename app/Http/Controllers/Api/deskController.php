@@ -7,6 +7,7 @@ use App\Http\Requests\deskStoreRequest;
 use App\Http\Resources\deskResource;
 use App\Models\Desks;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class deskController extends Controller
 {
@@ -17,7 +18,7 @@ class deskController extends Controller
      */
     public function index()
     {
-        return deskResource::collection(Desks::with('lists')->get());
+        return deskResource::collection(Desks::all());
     }
 
     /**
@@ -38,9 +39,9 @@ class deskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Desks $desk)
     {
-        return new deskResource(Desks::with('lists')->findOrFail($id));
+        return new deskResource($desk);
     }
 
     /**
@@ -50,9 +51,10 @@ class deskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(deskStoreRequest $request, Desks $desk)
     {
-        //
+        $desk->update($request->validated());
+        return new deskResource($desk);
     }
 
     /**
@@ -61,8 +63,9 @@ class deskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Desks $desk)
     {
-        //
+        $desk->delete();
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }
