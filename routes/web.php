@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\v1\listController;
+use App\Http\Controllers\spaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{any}', [spaController::class, 'index'])->where('any', '.*');
+

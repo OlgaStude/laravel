@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
     {
 
         Desks::factory(10)->create();
-        Lists::factory(10)->create();
-        Cards::factory(10)->create();
-        Tasks::factory(10)->create();
+        Lists::factory(20)->create();
+        Cards::factory(40)->create();
+        Tasks::factory(80)->create();
     }
 }
